@@ -1,5 +1,6 @@
 package org.codecaveofandrew.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -15,6 +16,7 @@ public class FilmResource {
 
   @GET
   @Path("/list")
+  @RolesAllowed({"User"})
   public List<Film> listFilm() {
     return filmRepository.find20QueriesOrderById();
   }
