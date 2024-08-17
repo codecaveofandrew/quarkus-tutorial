@@ -1,5 +1,5 @@
 ```shell
-docker run --platform linux/amd64 -d --publish 3306:3306 --name sakila restsql/mysql-sakila:
+docker run --platform linux/amd64 -d --publish 33065:3306 --name sakila restsql/mysql-sakila:
 ```
 
 ```properties
@@ -11,5 +11,4 @@ quarkus.datasource.password=sakila
 quarkus.datasource.db-version=5.7.0
 # Hibernate config
 quarkus.hibernate-orm.log.sql=true
-
 ```
