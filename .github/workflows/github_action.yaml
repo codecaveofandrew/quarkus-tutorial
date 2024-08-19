@@ -28,7 +28,9 @@ jobs:
           docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
 
       - name: Set up Kubeconfig
-        run: echo "${{ secrets.KUBECONFIG_DATA }}" > $HOME/.kube/config
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG_DATA }}" > $HOME/.kube/config
 
       - name: Verify kubectl access
         run: kubectl cluster-info
