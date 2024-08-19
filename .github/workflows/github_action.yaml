@@ -24,7 +24,7 @@ jobs:
       - name: Docker login and Image Push
         run: |
           echo ${{ secrets.VULTR_API_KEY }} | docker login https://sjc.vultrcr.com/codecaveofandrew -u ${{ secrets.VULTR_USERNAME }} --password-stdin
-          docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+          docker tag sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
           docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
 
       - name: Set up Kubeconfig
