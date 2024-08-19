@@ -19,7 +19,7 @@ jobs:
           java-version: '21'
 
       - name: Build with Maven
-        run: mvn clean package
+        run: ./mvnw package -Pnative -Dquarkus.container-image.build=true -DskipTests -Dquarkus.native.container-build=true -Dquarkus.profile=prod
 
       - name: Docker login
         run: docker login https://sjc.vultrcr.com/codecaveofandrew -u ${{ secrets.VULTR_USERNAME }} -p ${{ secrets.VULTR_API_KEY }}
