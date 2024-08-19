@@ -27,6 +27,12 @@ jobs:
           docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
           docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
 
+      - name: Set up Kubeconfig
+        run: echo "${{ secrets.KUBECONFIG_DATA }}" > $HOME/.kube/config
+
+      - name: Verify kubectl access
+        run: kubectl cluster-info
+
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f deploy.yaml
