@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-with-quarkus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-with-quarkus
+  template:
+    metadata:
+      labels:
+        app: code-with-quarkus
+    spec:
+      containers:
+        - name: code-with-quarkus
+          image: andrew/code-with-quarkus:1.0.0-SNAPSHOT
+          ports:
+            - containerPort: 8080
