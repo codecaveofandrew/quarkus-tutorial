@@ -22,7 +22,7 @@ jobs:
         run: ./mvnw package -Pnative -Dquarkus.container-image.build=true -DskipTests -Dquarkus.native.container-build=true -Dquarkus.profile=prod
 
       - name: Docker login
-        run: docker login https://sjc.vultrcr.com/codecaveofandrew -u ${{ secrets.VULTR_USERNAME }} -p ${{ secrets.VULTR_API_KEY }}
+        run: echo ${{ secrets.VULTR_API_KEY }} | docker login https://sjc.vultrcr.com/codecaveofandrew -u ${{ secrets.VULTR_USERNAME }} --password-stdin
 
       - name: Build and push Docker image
         run: |
