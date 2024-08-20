@@ -21,11 +21,23 @@ jobs:
       - name: Build with Maven
         run: ./mvnw package -Pnative -Dquarkus.container-image.build=true -DskipTests -Dquarkus.native.container-build=true -Dquarkus.profile=vke
 
-      - name: Docker login and Image Push
+      - name: Docker login
         run: |
           echo ${{ secrets.VULTR_API_KEY }} | docker login https://sjc.vultrcr.com/codecaveofandrew -u ${{ secrets.VULTR_USERNAME }} --password-stdin
-          docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
-          docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+
+      - name: Tag Docker image
+        run: docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+
+      - name: Push Docker image
+        run: docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Kubeconfig
         run: |
@@ -36,5 +48,4 @@ jobs:
         run: kubectl cluster-info
 
       - name: Deploy to Kubernetes
-        run: |
-          kubectl apply -f deploy.yaml
+        run: kubectl apply -f deploy.yaml
