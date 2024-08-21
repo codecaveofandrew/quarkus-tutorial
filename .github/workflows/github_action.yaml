@@ -47,5 +47,8 @@ jobs:
       - name: Verify kubectl access
         run: kubectl cluster-info
 
+      - name: Delete previous deployment
+        run: kubectl delete -f deploy.yaml --ignore-not-found
+
       - name: Deploy to Kubernetes
         run: kubectl apply -f deploy.yaml
