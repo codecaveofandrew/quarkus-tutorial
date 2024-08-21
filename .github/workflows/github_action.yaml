@@ -19,7 +19,7 @@ jobs:
           java-version: '21'
 
       - name: Build with Maven
-        run: ./mvnw package -Pnative -Dquarkus.container-image.build=true -DskipTests -Dquarkus.native.container-build=true -Dquarkus.profile=vke
+        run: ./mvnw package -Pnative -Dquarkus.container-image.build=true -DskipTests -Dquarkus.native.container-build=true -Dquarkus.profile=vultr
 
       - name: Docker login
         run: |
