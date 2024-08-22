@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: code-with-quarkus
-          image: codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+          image: sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
           ports:
             - containerPort: 8080
