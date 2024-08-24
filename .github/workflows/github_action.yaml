@@ -32,7 +32,7 @@ jobs:
           docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-${COMMIT_HASH}
 
       - name: Push Docker image
-        run: docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+        run: docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT-${COMMIT_HASH}
 
   deploy:
     runs-on: ubuntu-latest
