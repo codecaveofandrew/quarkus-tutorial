@@ -17,3 +17,19 @@ spec:
           image: codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
           ports:
             - containerPort: 8080
+          env:
+            - name: QUARKUS_DATASOURCE_JDBC_URL
+              value: jdbc:mysql://localhost:3306/sakila
+            - name: QUARKUS_DATASOURCE_USERNAME
+              value: root
+            - name: QUARKUS_DATASOURCE_PASSWORD
+              value: sakila
+        - name: sakila-db
+          image: restsql/mysql-sakila
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: sakila
+            - name: MYSQL_DATABASE
+              value: sakila
+          ports:
+            - containerPort: 3306
