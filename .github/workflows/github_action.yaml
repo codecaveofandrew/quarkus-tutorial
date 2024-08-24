@@ -23,15 +23,13 @@ jobs:
 
       - name: Docker login
         run: |
-          echo ${{ secrets.VULTR_API_KEY }} | docker login https://sjc.vultrcr.com/codecaveofandrew -u ${{ secrets.VULTR_USERNAME }} --password-stdin
-
+          echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
       - name: Tag Docker image
-        run: |
-          docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+        run: docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
 
       - name: Push Docker image
-        run: docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+        run: docker push codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
 
   deploy:
     runs-on: ubuntu-latest
