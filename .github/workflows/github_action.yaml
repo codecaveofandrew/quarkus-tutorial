@@ -28,11 +28,10 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)  # 获取前7位的提交哈希
-          docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-${COMMIT_HASH}
+          docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0
 
       - name: Push Docker image
-        run: docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT-${COMMIT_HASH}
+        run: docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
 
   deploy:
     runs-on: ubuntu-latest
