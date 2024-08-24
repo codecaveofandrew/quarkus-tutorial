@@ -25,6 +25,7 @@ jobs:
         run: |
           echo ${{ secrets.VULTR_API_KEY }} | docker login https://sjc.vultrcr.com/codecaveofandrew -u ${{ secrets.VULTR_USERNAME }} --password-stdin
 
+
       - name: Tag Docker image
         run: |
           COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)  # 获取前7位的提交哈希
