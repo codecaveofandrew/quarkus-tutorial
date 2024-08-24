@@ -28,7 +28,7 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0
+          docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
 
       - name: Push Docker image
         run: docker push sjc.vultrcr.com/codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
