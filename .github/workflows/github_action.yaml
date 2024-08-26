@@ -25,11 +25,19 @@ jobs:
         run: |
           echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
-      - name: Tag Docker image
-        run: docker tag runner/code-with-quarkus:1.0.0-SNAPSHOT codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+      - name: Get Git Commit Hash
+        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
-      - name: Push Docker image
-        run: docker push codecaveofandrew/code-with-quarkus:1.0.0-SNAPSHOT
+      - name: Build Docker image
+        run: |
+          docker build -t codecaveofandrew/code-with-quarkus:latest \
+                       -t codecaveofandrew/code-with-quarkus:${{ env.COMMIT_HASH }} .
+
+      - name: Push Docker image (latest)
+        run: docker push codecaveofandrew/code-with-quarkus:latest
+
+      - name: Push Docker image (commit hash)
+        run: docker push codecaveofandrew/code-with-quarkus:${{ env.COMMIT_HASH }}
 
   deploy:
     runs-on: ubuntu-latest
