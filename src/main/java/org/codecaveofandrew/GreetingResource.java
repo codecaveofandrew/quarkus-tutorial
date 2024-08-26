@@ -20,4 +20,12 @@ public class GreetingResource {
     public String cicd() {
         return "Hello from CICD";
     }
+
+
+    @GET
+    @Path("/nice")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String nice() {
+        return "to meet you";
+    }
 }
